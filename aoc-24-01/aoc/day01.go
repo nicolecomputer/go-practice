@@ -1,7 +1,6 @@
 package aoc
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
 )
@@ -16,13 +15,20 @@ func ProcessLineForSpelledNumbers(line string) string {
 			result = result[:i] + strings.Replace(subStr, "two", "2", 1)
 		}
 
+		if strings.HasPrefix(subStr, "three") {
+			result = result[:i] + strings.Replace(subStr, "three", "3", 1)
+		}
+
+		if strings.HasPrefix(subStr, "eight") {
+			result = result[:i] + strings.Replace(subStr, "eight", "8", 1)
+		}
+
 		if strings.HasPrefix(subStr, "nine") {
 			result = result[:i] + strings.Replace(subStr, "nine", "9", 1)
 		}
 
 	}
 
-	fmt.Println("result", result)
 	return result
 }
 

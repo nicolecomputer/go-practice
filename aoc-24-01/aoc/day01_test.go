@@ -61,4 +61,11 @@ func TestProcessLineForSpelledNumbers(t *testing.T) {
 
 		assertEqualStr(t, expected, got)
 	})
+
+	t.Run("eightwothree", func(t *testing.T) {
+		expected := "8wo3"
+		got := ProcessLineForSpelledNumbers("eightwothree")
+
+		assertEqualStr(t, expected, got)
+	})
 }
