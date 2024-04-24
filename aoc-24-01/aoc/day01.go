@@ -1,9 +1,30 @@
 package aoc
 
 import (
+	"fmt"
 	"strconv"
 	"strings"
 )
+
+func ProcessLineForSpelledNumbers(line string) string {
+	result := strings.Clone(line)
+
+	for i := 0; i < len(result); i++ {
+		subStr := string(result[i:])
+
+		if strings.HasPrefix(subStr, "two") {
+			result = result[:i] + strings.Replace(subStr, "two", "2", 1)
+		}
+
+		if strings.HasPrefix(subStr, "nine") {
+			result = result[:i] + strings.Replace(subStr, "nine", "9", 1)
+		}
+
+	}
+
+	fmt.Println("result", result)
+	return result
+}
 
 func CalibrationValue(line string) int {
 	var firstNum int64 = -1
@@ -29,6 +50,8 @@ func allLines(str string) []string {
 	return strings.Split(str, "\n")
 }
 
+// TODO:
+// - Take CalibrationValue function as an argument
 func TotalCalibrationValue(input string) int {
 	total := 0
 	lines := allLines(input)

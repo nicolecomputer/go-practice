@@ -8,6 +8,12 @@ func assertEqual(t *testing.T, expected int, got int) {
 	}
 }
 
+func assertEqualStr(t *testing.T, expected string, got string) {
+	if expected != got {
+		t.Errorf("expected %s got %s", expected, got)
+	}
+}
+
 func TestCalibrationValue(t *testing.T) {
 	t.Run("1abc2", func(t *testing.T) {
 		expected := 12
@@ -45,5 +51,14 @@ func TestTotalCalibrationValue(t *testing.T) {
 		got := TotalCalibrationValue(input)
 
 		assertEqual(t, expected, got)
+	})
+}
+
+func TestProcessLineForSpelledNumbers(t *testing.T) {
+	t.Run("two1nine", func(t *testing.T) {
+		expected := "219"
+		got := ProcessLineForSpelledNumbers("two1nine")
+
+		assertEqualStr(t, expected, got)
 	})
 }
