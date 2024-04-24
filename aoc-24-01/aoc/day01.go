@@ -13,21 +13,21 @@ func ProcessLineForSpelledNumbers(line string) string {
 
 		if strings.HasPrefix(subStr, "one") {
 			result = result[:i] + strings.Replace(subStr, "one", "1", 1)
-		}
-
-		if strings.HasPrefix(subStr, "two") {
+		} else if strings.HasPrefix(subStr, "two") {
 			result = result[:i] + strings.Replace(subStr, "two", "2", 1)
-		}
-
-		if strings.HasPrefix(subStr, "three") {
+		} else if strings.HasPrefix(subStr, "three") {
 			result = result[:i] + strings.Replace(subStr, "three", "3", 1)
-		}
-
-		if strings.HasPrefix(subStr, "eight") {
+		} else if strings.HasPrefix(subStr, "four") {
+			result = result[:i] + strings.Replace(subStr, "four", "4", 1)
+		} else if strings.HasPrefix(subStr, "five") {
+			result = result[:i] + strings.Replace(subStr, "five", "5", 1)
+		} else if strings.HasPrefix(subStr, "six") {
+			result = result[:i] + strings.Replace(subStr, "six", "6", 1)
+		} else if strings.HasPrefix(subStr, "seven") {
+			result = result[:i] + strings.Replace(subStr, "seven", "7", 1)
+		} else if strings.HasPrefix(subStr, "eight") {
 			result = result[:i] + strings.Replace(subStr, "eight", "8", 1)
-		}
-
-		if strings.HasPrefix(subStr, "nine") {
+		} else if strings.HasPrefix(subStr, "nine") {
 			result = result[:i] + strings.Replace(subStr, "nine", "9", 1)
 		}
 
