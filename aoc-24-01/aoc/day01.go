@@ -30,13 +30,16 @@ func ProcessLineForSpelledNumbers(line string) string {
 		} else if strings.HasPrefix(subStr, "nine") {
 			result = result[:i] + strings.Replace(subStr, "nine", "9", 1)
 		}
-
 	}
 
 	return result
 }
 
-func CalibrationValue(line string) int {
+func CalibrationValue(line string, filterSpelledOutWords bool) int {
+	if filterSpelledOutWords {
+		line = ProcessLineForSpelledNumbers(line)
+	}
+
 	var firstNum int64 = -1
 	var lastNum int64 = -1
 
@@ -60,14 +63,12 @@ func allLines(str string) []string {
 	return strings.Split(str, "\n")
 }
 
-// TODO:
-// - Take CalibrationValue function as an argument
-func TotalCalibrationValue(input string) int {
+func TotalCalibrationValue(input string, filterSpelledOutWords bool) int {
 	total := 0
 	lines := allLines(input)
 
 	for _, line := range lines {
-		total += CalibrationValue(line)
+		total += CalibrationValue(line, filterSpelledOutWords)
 	}
 
 	return total
