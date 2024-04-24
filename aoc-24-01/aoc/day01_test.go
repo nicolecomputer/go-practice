@@ -33,3 +33,17 @@ func TestCalibrationValue(t *testing.T) {
 		assertEqual(t, expected, got)
 	})
 }
+
+func TestTotalCalibrationValue(t *testing.T) {
+	t.Run("example1", func(t *testing.T) {
+		input := `1abc2
+		pqr3stu8vwx
+		a1b2c3d4e5f
+		treb7uchet`
+
+		expected := 142
+		got := TotalCalibrationValue(input)
+
+		assertEqual(t, expected, got)
+	})
+}

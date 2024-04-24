@@ -1,6 +1,9 @@
 package aoc
 
-import "strconv"
+import (
+	"strconv"
+	"strings"
+)
 
 func CalibrationValue(line string) int {
 	var firstNum int64 = -1
@@ -20,4 +23,13 @@ func CalibrationValue(line string) int {
 	}
 
 	return int(firstNum)*10 + int(lastNum)
+}
+
+func lines(str string) []string {
+	return strings.Split(str, "\n")
+}
+
+func TotalCalibrationValue(input string) int {
+	total := 0
+	return total
 }
