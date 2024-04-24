@@ -11,6 +11,10 @@ func ProcessLineForSpelledNumbers(line string) string {
 	for i := 0; i < len(result); i++ {
 		subStr := string(result[i:])
 
+		if strings.HasPrefix(subStr, "one") {
+			result = result[:i] + strings.Replace(subStr, "one", "1", 1)
+		}
+
 		if strings.HasPrefix(subStr, "two") {
 			result = result[:i] + strings.Replace(subStr, "two", "2", 1)
 		}
