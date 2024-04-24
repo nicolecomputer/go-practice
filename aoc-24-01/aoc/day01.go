@@ -25,11 +25,17 @@ func CalibrationValue(line string) int {
 	return int(firstNum)*10 + int(lastNum)
 }
 
-func lines(str string) []string {
+func allLines(str string) []string {
 	return strings.Split(str, "\n")
 }
 
 func TotalCalibrationValue(input string) int {
 	total := 0
+	lines := allLines(input)
+
+	for _, line := range lines {
+		total += CalibrationValue(line)
+	}
+
 	return total
 }
