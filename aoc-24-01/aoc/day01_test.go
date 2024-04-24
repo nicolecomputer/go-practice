@@ -26,4 +26,10 @@ func TestCalibrationValue(t *testing.T) {
 		got := CalibrationValue("a1b2c3d4e5f")
 		assertEqual(t, expected, got)
 	})
+
+	t.Run("treb7uchet", func(t *testing.T) {
+		expected := 77
+		got := CalibrationValue("treb7uchet")
+		assertEqual(t, expected, got)
+	})
 }

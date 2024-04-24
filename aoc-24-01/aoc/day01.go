@@ -14,9 +14,9 @@ func CalibrationValue(line string) int {
 
 		if firstNum == -1 {
 			firstNum = num
-		} else {
-			lastNum = num
 		}
+
+		lastNum = num
 	}
 
 	return int(firstNum)*10 + int(lastNum)
