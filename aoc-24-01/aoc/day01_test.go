@@ -83,7 +83,7 @@ func TestCalibrationValue(t *testing.T) {
 }
 
 func TestTotalCalibrationValue(t *testing.T) {
-	t.Run("example1", func(t *testing.T) {
+	t.Run("example without filtering spelled words", func(t *testing.T) {
 		input := `1abc2
 		pqr3stu8vwx
 		a1b2c3d4e5f
@@ -91,6 +91,21 @@ func TestTotalCalibrationValue(t *testing.T) {
 
 		expected := 142
 		got := TotalCalibrationValue(input, false)
+
+		assertEqual(t, expected, got)
+	})
+
+	t.Run("example with filtering spelled words", func(t *testing.T) {
+		input := `two1nine
+		eightwothree
+		abcone2threexyz
+		xtwone3four
+		4nineeightseven2
+		zoneight234
+		7pqrstsixteen`
+
+		expected := 281
+		got := TotalCalibrationValue(input, true)
 
 		assertEqual(t, expected, got)
 	})
