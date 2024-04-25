@@ -82,7 +82,7 @@ func TestCalibrationValue(t *testing.T) {
 	})
 
 	t.Run("oneight with filtering spelled words", func(t *testing.T) {
-		expected := 11
+		expected := 18
 		got := CalibrationValue("oneight", true)
 		assertEqual(t, expected, got)
 	})
@@ -159,6 +159,27 @@ func TestTotalCalibrationValue(t *testing.T) {
 }
 
 func TestProcessLineForSpelledNumbers(t *testing.T) {
+	t.Run("twone", func(t *testing.T) {
+		expected := "21"
+		got := ProcessLineForSpelledNumbers("twone")
+
+		assertEqualStr(t, expected, got)
+	})
+
+	t.Run("sevenine", func(t *testing.T) {
+		expected := "79"
+		got := ProcessLineForSpelledNumbers("sevenine")
+
+		assertEqualStr(t, expected, got)
+	})
+
+	t.Run("onethree", func(t *testing.T) {
+		expected := "13"
+		got := ProcessLineForSpelledNumbers("onethree")
+
+		assertEqualStr(t, expected, got)
+	})
+
 	t.Run("two1nine", func(t *testing.T) {
 		expected := "219"
 		got := ProcessLineForSpelledNumbers("two1nine")
@@ -167,21 +188,21 @@ func TestProcessLineForSpelledNumbers(t *testing.T) {
 	})
 
 	t.Run("eightwothree", func(t *testing.T) {
-		expected := "8wo3"
+		expected := "823"
 		got := ProcessLineForSpelledNumbers("eightwothree")
 
 		assertEqualStr(t, expected, got)
 	})
 
 	t.Run("abcone2threexyz", func(t *testing.T) {
-		expected := "abc123xyz"
+		expected := "123"
 		got := ProcessLineForSpelledNumbers("abcone2threexyz")
 
 		assertEqualStr(t, expected, got)
 	})
 
 	t.Run("xtwone3four", func(t *testing.T) {
-		expected := "x2ne34"
+		expected := "2134"
 		got := ProcessLineForSpelledNumbers("xtwone3four")
 
 		assertEqualStr(t, expected, got)

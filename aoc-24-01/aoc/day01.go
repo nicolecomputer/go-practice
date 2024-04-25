@@ -6,29 +6,34 @@ import (
 )
 
 func ProcessLineForSpelledNumbers(line string) string {
-	result := strings.Clone(line)
+	result := ""
 
-	for i := 0; i < len(result); i++ {
-		subStr := string(result[i:])
+	for i := 0; i < len(line); i++ {
+		_, err := strconv.Atoi(string(line[i]))
+		if err == nil {
+			result = result + string(line[i])
+		}
+
+		subStr := string(line[i:])
 
 		if strings.HasPrefix(subStr, "one") {
-			result = result[:i] + strings.Replace(subStr, "one", "1", 1)
+			result = result + "1"
 		} else if strings.HasPrefix(subStr, "two") {
-			result = result[:i] + strings.Replace(subStr, "two", "2", 1)
+			result = result + "2"
 		} else if strings.HasPrefix(subStr, "three") {
-			result = result[:i] + strings.Replace(subStr, "three", "3", 1)
+			result = result + "3"
 		} else if strings.HasPrefix(subStr, "four") {
-			result = result[:i] + strings.Replace(subStr, "four", "4", 1)
+			result = result + "4"
 		} else if strings.HasPrefix(subStr, "five") {
-			result = result[:i] + strings.Replace(subStr, "five", "5", 1)
+			result = result + "5"
 		} else if strings.HasPrefix(subStr, "six") {
-			result = result[:i] + strings.Replace(subStr, "six", "6", 1)
+			result = result + "6"
 		} else if strings.HasPrefix(subStr, "seven") {
-			result = result[:i] + strings.Replace(subStr, "seven", "7", 1)
+			result = result + "7"
 		} else if strings.HasPrefix(subStr, "eight") {
-			result = result[:i] + strings.Replace(subStr, "eight", "8", 1)
+			result = result + "8"
 		} else if strings.HasPrefix(subStr, "nine") {
-			result = result[:i] + strings.Replace(subStr, "nine", "9", 1)
+			result = result + "9"
 		}
 	}
 
