@@ -80,6 +80,53 @@ func TestCalibrationValue(t *testing.T) {
 		got := CalibrationValue("7pqrstsixteen", true)
 		assertEqual(t, expected, got)
 	})
+
+	t.Run("oneight with filtering spelled words", func(t *testing.T) {
+		expected := 11
+		got := CalibrationValue("oneight", true)
+		assertEqual(t, expected, got)
+	})
+
+	t.Run("one with filtering spelled words", func(t *testing.T) {
+		expected := 11
+		got := CalibrationValue("one", true)
+		assertEqual(t, expected, got)
+	})
+
+	t.Run("two with filtering spelled words", func(t *testing.T) {
+		expected := 22
+		got := CalibrationValue("two", true)
+		assertEqual(t, expected, got)
+	})
+
+	t.Run("three with filtering spelled words", func(t *testing.T) {
+		expected := 33
+		got := CalibrationValue("three", true)
+		assertEqual(t, expected, got)
+	})
+
+	t.Run("four with filtering spelled words", func(t *testing.T) {
+		expected := 44
+		got := CalibrationValue("four", true)
+		assertEqual(t, expected, got)
+	})
+
+	t.Run("five with filtering spelled words", func(t *testing.T) {
+		expected := 55
+		got := CalibrationValue("five", true)
+		assertEqual(t, expected, got)
+	})
+
+	t.Run("six with filtering spelled words", func(t *testing.T) {
+		expected := 66
+		got := CalibrationValue("six", true)
+		assertEqual(t, expected, got)
+	})
+	t.Run("seven with filtering spelled words", func(t *testing.T) {
+		expected := 77
+		got := CalibrationValue("seven", true)
+		assertEqual(t, expected, got)
+	})
 }
 
 func TestTotalCalibrationValue(t *testing.T) {
