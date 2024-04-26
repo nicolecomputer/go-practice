@@ -24,7 +24,7 @@ The Advent of Code website describes the format as:
 >
 > For example, the record of a few games might look like this:
 
-````
+```
 Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
 Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue
 Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red
@@ -35,4 +35,6 @@ Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green
 > In game 1, three sets of cubes are revealed from the bag (and then put back
 > again). The first set is 3 blue cubes and 4 red cubes; the second set is 1 red
 > cube, 2 green cubes, and 6 blue cubes; the third set is only 2 green cubes.
-````
+
+```
+```
