@@ -16,7 +16,7 @@ type Game struct {
 	NumbersOnCard  []int `@Int+`
 }
 
-func sanitizedInput(path string) string {
+func SanitizedInput(path string) string {
 	bytes, err := os.ReadFile(path)
 	if err != nil {
 		fmt.Print(err)
@@ -43,7 +43,7 @@ func ParseGame(input string) *Game {
 	return game
 }
 
-func parseGames(input string) []*Game {
+func ParseGames(input string) []*Game {
 	var games []*Game
 	for _, line := range strings.Split(input, "\n") {
 		games = append(games, ParseGame(line))
