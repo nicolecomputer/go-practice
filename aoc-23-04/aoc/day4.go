@@ -66,3 +66,11 @@ func Score(g *Game) int {
 
 	return int(math.Pow(2, float64(totalFound-1)))
 }
+
+func TotalScore(games []*Game) int {
+	score := 0
+	for _, game := range games {
+		score += Score(game)
+	}
+	return score
+}
