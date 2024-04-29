@@ -1,4 +1,4 @@
-package aoc
+package day04
 
 import (
 	"fmt"
@@ -14,17 +14,6 @@ type Game struct {
 	Id             int   `"Card" @Int ":"`
 	WinningNumbers []int `@Int+ "|"`
 	NumbersOnCard  []int `@Int+`
-}
-
-func SanitizedInput(path string) string {
-	bytes, err := os.ReadFile(path)
-	if err != nil {
-		fmt.Print(err)
-	}
-	str := string(bytes)
-	str = strings.TrimSpace(str)
-
-	return str
 }
 
 func ParseGame(input string) *Game {

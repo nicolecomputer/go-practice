@@ -4,7 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	"aoc/aoc"
+	"aoc/day04"
+	"aoc/util"
 )
 
 func main() {
@@ -14,10 +15,10 @@ func main() {
 	}
 
 	inputFilename := os.Args[1]
-	input := aoc.SanitizedInput(inputFilename)
+	input := util.SanitizedInput(inputFilename)
 
-	games := aoc.ParseGames(input)
+	games := day04.ParseGames(input)
 
-	score := aoc.TotalScore(games)
+	score := day04.TotalScore(games)
 	fmt.Println("Part 1:", score)
 }
