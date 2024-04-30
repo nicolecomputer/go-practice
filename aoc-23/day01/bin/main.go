@@ -5,7 +5,7 @@ import (
 	"os"
 	"strings"
 
-	"aoc/aoc"
+	"aoc/day01"
 )
 
 func sanitizedInput(path string) string {
@@ -27,9 +27,9 @@ func main() {
 
 	input := sanitizedInput(os.Args[1])
 
-	part1 := aoc.TotalCalibrationValue(input, false)
+	part1 := day01.TotalCalibrationValue(input, false)
 	fmt.Println("Part 1:", part1)
 
-	part2 := aoc.TotalCalibrationValue(input, true)
+	part2 := day01.TotalCalibrationValue(input, true)
 	fmt.Println("Part 2:", part2)
 }
