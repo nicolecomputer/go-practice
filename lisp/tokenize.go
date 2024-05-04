@@ -9,7 +9,7 @@ func shouldAppendToken(token string) bool {
 	return len(token) > 0
 }
 
-func lexer(str string) []string {
+func lex(str string) []string {
 	result := []string{}
 
 	var currentToken string = ""
