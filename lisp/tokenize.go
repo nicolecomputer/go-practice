@@ -73,6 +73,23 @@ func tokenize(tokens []string) []Token {
 	return result
 }
 
+type Expression interface{}
+
+type (
+	List struct {
+		Children Expression
+	}
+
+	Number struct {
+		Value float64
+	}
+)
+
+func Parse(tokens []Token) Expression {
+	// use stack of tokens
+	return List{}
+}
+
 // IsValid
 // - NOPE: Check if left parens count matches right parens count
 // ()))))()

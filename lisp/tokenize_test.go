@@ -112,3 +112,16 @@ func TestTokenize(t *testing.T) {
 		}
 	})
 }
+
+func TestParse(t *testing.T) {
+	t.Run("()", func(t *testing.T) {
+		want := List{}
+
+		input := "()"
+		got := Parse(tokenize(lex(input)))
+
+		if !reflect.DeepEqual(want, got) {
+			t.Errorf("expected %s got %s", want, got)
+		}
+	})
+}
