@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestTokenize(t *testing.T) {
+func TestLex(t *testing.T) {
 	t.Run("Empty string", func(t *testing.T) {
 		want := []string{}
 		got := lexer("")
@@ -70,4 +70,45 @@ func TestTokenize(t *testing.T) {
 	})
 
 	// Strings with spaces
+}
+
+func TestTokenize(t *testing.T) {
+	t.Run("()", func(t *testing.T) {
+		want := []Token{LParenToken{}, RParenToken{}}
+
+		input := "()"
+		got := tokenize(lexer(input))
+
+		if !reflect.DeepEqual(want, got) {
+			t.Errorf("expected %s got %s", want, got)
+		}
+	})
+
+	t.Run("(123)", func(t *testing.T) {
+		want := []Token{LParenToken{}, NumericToken{Value: 123}, RParenToken{}}
+
+		input := "(123)"
+		got := tokenize(lexer(input))
+
+		if !reflect.DeepEqual(want, got) {
+			t.Errorf("expected %s got %s", want, got)
+		}
+	})
+
+	t.Run("(+ 12 90)", func(t *testing.T) {
+		want := []Token{
+			LParenToken{},
+			PlusOperatorToken{},
+			NumericToken{Value: 12},
+			NumericToken{Value: 90},
+			RParenToken{},
+		}
+
+		input := "(+ 12 90)"
+		got := tokenize(lexer(input))
+
+		if !reflect.DeepEqual(want, got) {
+			t.Errorf("expected %s got %s", want, got)
+		}
+	})
 }
