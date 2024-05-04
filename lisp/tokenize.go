@@ -2,27 +2,25 @@ package lisp
 
 import "unicode"
 
-type token string
-
 func shouldAppendToken(token string) bool {
 	return len(token) > 0
 }
 
-func lexer(str string) []token {
-	result := []token{}
+func lexer(str string) []string {
+	result := []string{}
 
 	var currentToken string = ""
 
 	for _, rune := range str {
-		t := token(rune)
+		t := string(rune)
 		if unicode.IsSpace(rune) {
 			if shouldAppendToken(currentToken) {
-				result = append(result, token(currentToken))
+				result = append(result, string(currentToken))
 				currentToken = ""
 			}
 		} else if t == "(" || t == ")" {
 			if shouldAppendToken(currentToken) {
-				result = append(result, token(currentToken))
+				result = append(result, string(currentToken))
 				currentToken = ""
 			}
 
@@ -31,6 +29,19 @@ func lexer(str string) []token {
 			currentToken += string(rune)
 		}
 	}
+
+	return result
+}
+
+type Token interface{}
+
+type (
+	LParenToken  struct{}
+	RParentToken struct{}
+)
+
+func tokenize(tokens []string) []Token {
+	result := []Token{}
 
 	return result
 }
