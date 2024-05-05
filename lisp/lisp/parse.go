@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"strconv"
+	"strings"
 	"unicode"
 )
 
@@ -81,7 +82,9 @@ func tokenize(tokens []string) []Token {
 
 // PARSE
 
-type Expression interface{}
+type Expression interface {
+	String() string
+}
 
 type (
 	List struct {
@@ -97,8 +100,22 @@ type (
 	}
 )
 
+func (list List) String() string {
+	children := []string{}
+
+	for _, child := range list.Children {
+		children = append(children, child.String())
+	}
+
+	return fmt.Sprintf("(%s)", strings.Join(children, ", "))
+}
+
 func (p NumberAtom) String() string {
 	return fmt.Sprintf("[Number Atom %v]", p.Value)
+}
+
+func (p SymbolicAtom) String() string {
+	return fmt.Sprintf("[Symbolic Atom %s]", p.Value)
 }
 
 // TODO: This is a good place for go generics
