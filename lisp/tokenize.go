@@ -140,9 +140,9 @@ func Parse(tokens []Token) Expression {
 		return parseAtom(pop(remainingTokens))
 	}
 
-	// for len(*remainingTokens) > 0 {
-	// token := pop(remainingTokens)
-	// }
+	for len(*remainingTokens) > 0 {
+		_ := pop(remainingTokens)
+	}
 
 	return List{}
 }
