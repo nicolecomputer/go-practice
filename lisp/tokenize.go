@@ -1,6 +1,8 @@
 package lisp
 
 import (
+	"errors"
+	"fmt"
 	"strconv"
 	"unicode"
 )
@@ -31,6 +33,10 @@ func lex(str string) []string {
 		} else {
 			currentToken += string(rune)
 		}
+	}
+
+	if shouldAppendToken(currentToken) {
+		result = append(result, string(currentToken))
 	}
 
 	return result
@@ -73,20 +79,71 @@ func tokenize(tokens []string) []Token {
 	return result
 }
 
+// PARSE
+
 type Expression interface{}
 
 type (
 	List struct {
-		Children Expression
+		Children []Expression
 	}
 
-	Number struct {
+	NumberAtom struct {
 		Value float64
+	}
+
+	SymbolicAtom struct {
+		Value string
 	}
 )
 
+func (p NumberAtom) String() string {
+	return fmt.Sprintf("[Number Atom %v]", p.Value)
+}
+
+// TODO: This is a good place for go generics
+func pop(alist *[]Token) Token {
+	f := len(*alist)
+	rv := (*alist)[f-1]
+	*alist = (*alist)[:f-1]
+	return rv
+}
+
+func parseList(tokenStack *[]Token) {
+	// Create new list
+	// for each token
+	//    if token is rparen
+	//        return list
+	//    if token is lparen
+	//        parseList
+	//    else
+	//        appendtoken
+	// Keep adding childen to list until RParen
+	// return List
+}
+
+func parseAtom(token Token) (error Expression) {
+	switch t := token.(type) {
+	case StringToken:
+		return SymbolicAtom{Value: t.Value}
+	case NumericToken:
+		return NumberAtom{Value: t.Value}
+	default:
+		return errors.New("Unknown token type")
+	}
+}
+
 func Parse(tokens []Token) Expression {
-	// use stack of tokens
+	remainingTokens := &tokens
+
+	if len(*remainingTokens) == 1 {
+		return parseAtom(pop(remainingTokens))
+	}
+
+	// for len(*remainingTokens) > 0 {
+	// token := pop(remainingTokens)
+	// }
+
 	return List{}
 }
 

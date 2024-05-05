@@ -15,6 +15,15 @@ func TestLex(t *testing.T) {
 		}
 	})
 
+	t.Run("123", func(t *testing.T) {
+		want := []string{"123"}
+		got := lex("123")
+
+		if !reflect.DeepEqual(want, got) {
+			t.Errorf("expected %s got %s", want, got)
+		}
+	})
+
 	t.Run("()", func(t *testing.T) {
 		want := []string{"(", ")"}
 		got := lex("()")
@@ -118,6 +127,28 @@ func TestParse(t *testing.T) {
 		want := List{}
 
 		input := "()"
+		got := Parse(tokenize(lex(input)))
+
+		if !reflect.DeepEqual(want, got) {
+			t.Errorf("expected %s got %s", want, got)
+		}
+	})
+
+	t.Run("123", func(t *testing.T) {
+		want := NumberAtom{Value: 123}
+
+		input := "123"
+		got := Parse(tokenize(lex(input)))
+
+		if !reflect.DeepEqual(want, got) {
+			t.Errorf("expected %s got %s", want, got)
+		}
+	})
+
+	t.Run("abc", func(t *testing.T) {
+		want := SymbolicAtom{Value: "abc"}
+
+		input := "abc"
 		got := Parse(tokenize(lex(input)))
 
 		if !reflect.DeepEqual(want, got) {
