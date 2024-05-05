@@ -122,12 +122,12 @@ func TestTokenize(t *testing.T) {
 	})
 }
 
-func TestParse(t *testing.T) {
+func TestParseTokens(t *testing.T) {
 	t.Run("()", func(t *testing.T) {
 		want := List{Children: []Expression{}}
 
 		input := "()"
-		_, got := Parse(tokenize(lex(input)))
+		_, got := parseTokens(tokenize(lex(input)))
 
 		if !reflect.DeepEqual(want, got) {
 			t.Errorf("expected %s got %s", want, got)
@@ -138,7 +138,7 @@ func TestParse(t *testing.T) {
 		want := NumberAtom{Value: 123}
 
 		input := "123"
-		_, got := Parse(tokenize(lex(input)))
+		_, got := parseTokens(tokenize(lex(input)))
 
 		if !reflect.DeepEqual(want, got) {
 			t.Errorf("expected %s got %s", want, got)
@@ -149,7 +149,7 @@ func TestParse(t *testing.T) {
 		want := SymbolicAtom{Value: "abc"}
 
 		input := "abc"
-		_, got := Parse(tokenize(lex(input)))
+		_, got := parseTokens(tokenize(lex(input)))
 
 		if !reflect.DeepEqual(want, got) {
 			t.Errorf("expected %s got %s", want, got)
@@ -165,7 +165,7 @@ func TestParse(t *testing.T) {
 		}}
 
 		input := "(abc 123 99 zz)"
-		_, got := Parse(tokenize(lex(input)))
+		_, got := parseTokens(tokenize(lex(input)))
 
 		if !reflect.DeepEqual(want, got) {
 			t.Errorf("expected %s got %s", want, got)
@@ -183,10 +183,14 @@ func TestParse(t *testing.T) {
 		}}
 
 		input := "(abc (1 2 3))"
-		_, got := Parse(tokenize(lex(input)))
+		_, got := parseTokens(tokenize(lex(input)))
 
 		if !reflect.DeepEqual(want, got) {
 			t.Errorf("expected %s got %s", want, got)
 		}
 	})
+
+	// TODO:
+	// - Error handling for unterminated lists
+	// - Error handling for top levels tokens like "abc 123 99 a"
 }

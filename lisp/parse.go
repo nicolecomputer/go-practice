@@ -109,17 +109,6 @@ func pop(alist *[]Token) Token {
 }
 
 func parseList(remainingTokens *[]Token) (error, Expression) {
-	// Create new list
-	// for each token
-	//    if token is rparen
-	//        return list
-	//    if token is lparen
-	//        parseList
-	//    else
-	//        appendtoken
-	// Keep adding childen to list until RParen
-	// return List
-
 	var children []Expression = []Expression{}
 
 	var token Token
@@ -158,7 +147,7 @@ func parseAtom(token Token) (error, Expression) {
 	}
 }
 
-func Parse(tokens []Token) (error, Expression) {
+func parseTokens(tokens []Token) (error, Expression) {
 	remainingTokens := &tokens
 
 	if len(*remainingTokens) == 1 {
@@ -177,7 +166,6 @@ func Parse(tokens []Token) (error, Expression) {
 	return errors.New("Parse error"), nil
 }
 
-// IsValid
-// - NOPE: Check if left parens count matches right parens count
-// ()))))()
-// - Check if parens are balanced
+func Parse(input string) (error, Expression) {
+	return parseTokens(tokenize(lex(input)))
+}
