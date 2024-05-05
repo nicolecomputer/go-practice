@@ -103,13 +103,12 @@ func (p NumberAtom) String() string {
 
 // TODO: This is a good place for go generics
 func pop(alist *[]Token) Token {
-	f := len(*alist)
-	rv := (*alist)[f-1]
-	*alist = (*alist)[:f-1]
+	rv := (*alist)[0]
+	*alist = (*alist)[1:]
 	return rv
 }
 
-func parseList(tokenStack *[]Token) {
+func parseList(remainingTokens *[]Token) (error, Expression) {
 	// Create new list
 	// for each token
 	//    if token is rparen
@@ -120,20 +119,46 @@ func parseList(tokenStack *[]Token) {
 	//        appendtoken
 	// Keep adding childen to list until RParen
 	// return List
+
+	var children []Expression = []Expression{}
+
+	var token Token
+	for len(*remainingTokens) > 0 {
+		token = pop(remainingTokens)
+		switch token.(type) {
+		case LParenToken:
+			err, childList := parseList(remainingTokens)
+			if err != nil {
+				return err, nil
+			}
+			children = append(children, childList)
+		case RParenToken:
+			return nil, List{Children: children}
+		default:
+			err, child := parseAtom(token)
+			if err != nil {
+				return err, nil
+			}
+			children = append(children, child)
+		}
+	}
+
+	// This is an error, we got to the end of the tokens and didn't find a closing paren
+	return errors.New("Unterminated list"), nil
 }
 
-func parseAtom(token Token) (error Expression) {
+func parseAtom(token Token) (error, Expression) {
 	switch t := token.(type) {
 	case StringToken:
-		return SymbolicAtom{Value: t.Value}
+		return nil, SymbolicAtom{Value: t.Value}
 	case NumericToken:
-		return NumberAtom{Value: t.Value}
+		return nil, NumberAtom{Value: t.Value}
 	default:
-		return errors.New("Unknown token type")
+		return errors.New("Unknown token type"), nil
 	}
 }
 
-func Parse(tokens []Token) Expression {
+func Parse(tokens []Token) (error, Expression) {
 	remainingTokens := &tokens
 
 	if len(*remainingTokens) == 1 {
@@ -141,10 +166,15 @@ func Parse(tokens []Token) Expression {
 	}
 
 	for len(*remainingTokens) > 0 {
-		_ := pop(remainingTokens)
+		token := pop(remainingTokens)
+
+		switch token.(type) {
+		case LParenToken:
+			return parseList(remainingTokens)
+		}
 	}
 
-	return List{}
+	return errors.New("Parse error"), nil
 }
 
 // IsValid
