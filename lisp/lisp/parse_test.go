@@ -81,53 +81,12 @@ func TestLex(t *testing.T) {
 	// Strings with spaces
 }
 
-func TestTokenize(t *testing.T) {
-	t.Run("()", func(t *testing.T) {
-		want := []Token{LParenToken{}, RParenToken{}}
-
-		input := "()"
-		got := tokenize(Lex(input))
-
-		if !reflect.DeepEqual(want, got) {
-			t.Errorf("expected %s got %s", want, got)
-		}
-	})
-
-	t.Run("(123)", func(t *testing.T) {
-		want := []Token{LParenToken{}, NumericToken{Value: 123}, RParenToken{}}
-
-		input := "(123)"
-		got := tokenize(Lex(input))
-
-		if !reflect.DeepEqual(want, got) {
-			t.Errorf("expected %s got %s", want, got)
-		}
-	})
-
-	t.Run("(+ 12 90)", func(t *testing.T) {
-		want := []Token{
-			LParenToken{},
-			PlusOperatorToken{},
-			NumericToken{Value: 12},
-			NumericToken{Value: 90},
-			RParenToken{},
-		}
-
-		input := "(+ 12 90)"
-		got := tokenize(Lex(input))
-
-		if !reflect.DeepEqual(want, got) {
-			t.Errorf("expected %s got %s", want, got)
-		}
-	})
-}
-
 func TestParseTokens(t *testing.T) {
 	t.Run("()", func(t *testing.T) {
 		want := List{Children: []Expression{}}
 
 		input := "()"
-		_, got := parseTokens(tokenize(Lex(input)))
+		_, got := parseTokens(Tokenize(Lex(input)))
 
 		if !reflect.DeepEqual(want, got) {
 			t.Errorf("expected %s got %s", want, got)
@@ -138,7 +97,7 @@ func TestParseTokens(t *testing.T) {
 		want := NumberAtom{Value: 123}
 
 		input := "123"
-		_, got := parseTokens(tokenize(Lex(input)))
+		_, got := parseTokens(Tokenize(Lex(input)))
 
 		if !reflect.DeepEqual(want, got) {
 			t.Errorf("expected %s got %s", want, got)
@@ -149,7 +108,7 @@ func TestParseTokens(t *testing.T) {
 		want := SymbolicAtom{Value: "abc"}
 
 		input := "abc"
-		_, got := parseTokens(tokenize(Lex(input)))
+		_, got := parseTokens(Tokenize(Lex(input)))
 
 		if !reflect.DeepEqual(want, got) {
 			t.Errorf("expected %s got %s", want, got)
@@ -165,7 +124,7 @@ func TestParseTokens(t *testing.T) {
 		}}
 
 		input := "(abc 123 99 zz)"
-		_, got := parseTokens(tokenize(Lex(input)))
+		_, got := parseTokens(Tokenize(Lex(input)))
 
 		if !reflect.DeepEqual(want, got) {
 			t.Errorf("expected %s got %s", want, got)
@@ -183,7 +142,7 @@ func TestParseTokens(t *testing.T) {
 		}}
 
 		input := "(abc (1 2 3))"
-		_, got := parseTokens(tokenize(Lex(input)))
+		_, got := parseTokens(Tokenize(Lex(input)))
 
 		if !reflect.DeepEqual(want, got) {
 			t.Errorf("expected %s got %s", want, got)

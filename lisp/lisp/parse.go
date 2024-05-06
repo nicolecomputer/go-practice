@@ -3,7 +3,6 @@ package lisp
 import (
 	"errors"
 	"fmt"
-	"strconv"
 	"strings"
 	"unicode"
 )
@@ -38,43 +37,6 @@ func Lex(str string) []string {
 
 	if shouldAppendToken(currentToken) {
 		result = append(result, string(currentToken))
-	}
-
-	return result
-}
-
-type Token interface{}
-
-type (
-	LParenToken struct{}
-	RParenToken struct{}
-	StringToken struct {
-		Value string
-	}
-	NumericToken struct {
-		Value float64
-	}
-	PlusOperatorToken struct{}
-)
-
-func tokenize(tokens []string) []Token {
-	result := []Token{}
-
-	for _, token := range tokens {
-		if token == "(" {
-			result = append(result, LParenToken{})
-		} else if token == ")" {
-			result = append(result, RParenToken{})
-		} else if token == "+" {
-			result = append(result, PlusOperatorToken{})
-		} else {
-			num, err := strconv.ParseFloat(token, 64)
-			if err != nil {
-				result = append(result, StringToken{Value: token})
-			} else {
-				result = append(result, NumericToken{Value: num})
-			}
-		}
 	}
 
 	return result
@@ -194,5 +156,5 @@ func parseTokens(tokens []Token) (error, Expression) {
 }
 
 func Parse(input string) (error, Expression) {
-	return parseTokens(tokenize(Lex(input)))
+	return parseTokens(Tokenize(Lex(input)))
 }

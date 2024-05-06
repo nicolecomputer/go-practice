@@ -45,6 +45,17 @@ func main() {
 			result := strings.Join(results, ", ")
 
 			fmt.Println(result)
+		} else if strings.HasPrefix(text, ".tokenize") {
+			input := strings.TrimPrefix(text, ".tokenize")
+			var results []string = []string{}
+
+			for _, token := range lisp.Tokenize(lisp.Lex(input)) {
+				results = append(results, token.String())
+			}
+
+			result := strings.Join(results, ", ")
+
+			fmt.Println(result)
 		} else {
 			evaluateStr(text)
 		}
