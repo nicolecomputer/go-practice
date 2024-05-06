@@ -12,7 +12,7 @@ func shouldAppendToken(token string) bool {
 	return len(token) > 0
 }
 
-func lex(str string) []string {
+func Lex(str string) []string {
 	result := []string{}
 
 	var currentToken string = ""
@@ -98,6 +98,10 @@ type (
 	SymbolicAtom struct {
 		Value string
 	}
+
+	OperatorAtom struct {
+		Value string
+	}
 )
 
 func (list List) String() string {
@@ -116,6 +120,10 @@ func (p NumberAtom) String() string {
 
 func (p SymbolicAtom) String() string {
 	return fmt.Sprintf("[Symbolic Atom %s]", p.Value)
+}
+
+func (p OperatorAtom) String() string {
+	return fmt.Sprintf("[Operator Atom %s]", p.Value)
 }
 
 // TODO: This is a good place for go generics
@@ -159,6 +167,8 @@ func parseAtom(token Token) (error, Expression) {
 		return nil, SymbolicAtom{Value: t.Value}
 	case NumericToken:
 		return nil, NumberAtom{Value: t.Value}
+	case PlusOperatorToken:
+		return nil, OperatorAtom{Value: "+"}
 	default:
 		return errors.New("Unknown token type"), nil
 	}
@@ -184,5 +194,5 @@ func parseTokens(tokens []Token) (error, Expression) {
 }
 
 func Parse(input string) (error, Expression) {
-	return parseTokens(tokenize(lex(input)))
+	return parseTokens(tokenize(Lex(input)))
 }
