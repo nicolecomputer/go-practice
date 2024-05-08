@@ -1,0 +1,328 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{.Filename}}</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+
+        <script>
+            hljs.configure({cssSelector: ".code pre code", tabReplace: '..'});
+            hljs.highlightAll();
+        </script>
+
+        <style>
+            body {
+                font-family: "Lato", sans-serif;
+                display: flex;
+                flex-direction: column;
+                background-color: #FFF9FB;
+                align-items: center;
+                padding: 0;
+                margin: 0;
+            }
+
+            header {
+                background-color: #FFD1D7;
+                width: 100%;
+                height: 3px;
+                top: 0;
+            }
+
+            /* Base styles */
+            p {
+                font-size: 16px;
+            }
+
+            a {
+                color: #DAA4A9;
+            }
+
+            b,
+            strong {
+                font-weight: 700;
+
+            }
+
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                margin-top: 24px;
+                margin-bottom: 16px;
+                font-weight: 700;
+                line-height: 1.25;
+            }
+
+            h1 {
+                font-size: 2em;
+                margin: 0.67em 0;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            h3 {
+                font-size: 1.25em;
+            }
+
+            h4 {
+                font-size: 1em;
+            }
+
+            h5 {
+                font-size: 0.875em;
+            }
+
+            h6 {
+                font-size: 0.85em;
+                color: #CBD1D7;
+            }
+
+            code,
+            pre {
+                font-family: "Inconsolata", monospace;
+            }
+
+            /* WORDS Section */
+            .words {
+                width: 800px;
+                color: #73657B;
+            }
+            .words p {
+                font-size: 16px;
+            }
+
+            .words h1 {
+                border-bottom: 1px solid #FFD1D7;
+                padding-bottom: 0.3em;
+            }
+
+            .words h2 {
+                padding-bottom: 0.3em;
+                border-bottom: 1px solid #FFD1D7;
+            }
+
+            /* CODE Section */
+            .code {
+                margin: 10px 0;
+                overflow: hidden;
+                width: 800px;
+                border-radius: 8px;
+                border: 1px solid #D1D7DD;
+                background-color: #FDFAF5;
+
+                box-shadow: 3px 5px 5px #DEE1F6;
+            }
+
+            .hljs::-webkit-scrollbar {
+                display: none;
+            }
+
+            .hljs {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+
+            }
+
+            .code code,
+            .code pre {
+                margin: 0;
+                padding: 0;
+            }
+
+            .code-header {
+                font-family: "Inconsolata", monospace;
+                color: #FF5391;
+                font-size: 16px;
+
+                width: 100%;
+                height: 30px;
+                background-color: #EAECFA;
+                border-bottom: 1px solid #D1D7DD;
+                display: flex;
+            }
+
+            .code-header-file-tab {
+                height: 100%;
+                background-color: #FFEFEF;
+                padding: 0 10px;
+                border-radius: 0 8px 0 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+            }
+
+            /* Interrupt Section */
+            .interrupt {
+                width: 100%;
+                background-color: #9C89A7;
+                border-top: 1px solid #E8DDF5;
+                border-bottom: 1px solid #E8DDF5;
+
+                color: white;
+
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .interrupt a {
+                color: white;
+            }
+
+            .interrupt .content {
+                width: 800px;
+            }
+        </style>
+
+        <style>
+            pre code.hljs {
+                display: block;
+                overflow-x: auto;
+                padding: 1em;
+            }
+            code.hljs {
+                padding: 3px 5px;
+            }
+            .hljs {
+                color: #575279;
+                background: #FDFAF5;
+            }
+            .hljs ::selection,
+            .hljs::selection {
+                background-color: #f2e9de;
+                color: #575279;
+            }
+            .hljs-comment {
+                color: #9893a5;
+            }
+            .hljs-tag {
+                color: #6e6a86;
+            }
+            .hljs-operator,
+            .hljs-punctuation,
+            .hljs-subst {
+                color: #575279;
+            }
+            .hljs-operator {
+                opacity: 0.7;
+            }
+            .hljs-bullet,
+            .hljs-deletion,
+            .hljs-name,
+            .hljs-selector-tag,
+            .hljs-template-variable,
+            .hljs-variable {
+                color: #1f1d2e;
+            }
+            .hljs-attr,
+            .hljs-link,
+            .hljs-literal,
+            .hljs-number,
+            .hljs-symbol,
+            .hljs-variable.constant_ {
+                color: #b4637a;
+            }
+            .hljs-class .hljs-title,
+            .hljs-title,
+            .hljs-title.class_ {
+                color: #ea9d34;
+            }
+            .hljs-strong {
+                font-weight: 700;
+                color: #ea9d34;
+            }
+            .hljs-addition,
+            .hljs-code,
+            .hljs-string,
+            .hljs-title.class_.inherited__ {
+                color: #d7827e;
+            }
+            .hljs-built_in,
+            .hljs-doctag,
+            .hljs-keyword.hljs-atrule,
+            .hljs-quote,
+            .hljs-regexp {
+                color: #286983;
+            }
+            .hljs-attribute,
+            .hljs-function .hljs-title,
+            .hljs-section,
+            .hljs-title.function_,
+            .ruby .hljs-property {
+                color: #56949f;
+            }
+            .diff .hljs-meta,
+            .hljs-keyword,
+            .hljs-template-tag,
+            .hljs-type {
+                color: #907aa9;
+            }
+            .hljs-emphasis {
+                color: #907aa9;
+                font-style: italic;
+            }
+            .hljs-meta,
+            .hljs-meta .hljs-keyword,
+            .hljs-meta .hljs-string {
+                color: #c5c3ce;
+            }
+            .hljs-meta .hljs-keyword,
+            .hljs-meta-keyword {
+                font-weight: 700;
+            }
+        </style>
+
+        <style>
+            .hljs-ln-numbers {
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+
+                text-align: center;
+                color: #C8CADD;
+                vertical-align: top;
+            }
+        </style>
+    </head>
+    <body>
+        <header></header>
+        {{ range .Blocks }}
+            {{ if eq .Type "words" }}
+                <section class="words">
+                    {{.Content}}
+                </section>
+            {{ else if eq .Type "code"}}
+                <section class="code">
+                    <div class="code-header">
+                        <div class="code-header-file-tab">
+                            <p>{{$.Filename}}</p>
+                        </div>
+                    </div>
+                    <pre><code class="language-go">{{.Content}}</code></pre>
+                </section>
+            {{ end }}
+        {{ end }}
+        <section class="interrupt">
+            <div class="content">
+                <h2>Oh, hi ❤</h2>
+                <p>This page was generated using <a href="#">explain</a>
+                </p>
+            </div>
+        </section>
+    </body>
+</html>
