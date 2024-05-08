@@ -1,6 +1,8 @@
 /*:
 # CracklePop!
 
+The latest version of this code can be found on [Github](https://github.com/nicolecomputer/go-practice/blob/main/crackle-pop/main.go)
+
 Hello, Adventurer! 💖
 
 Welcome to the secret headquarters. We have snacks! But, the snacks are only
@@ -13,8 +15,8 @@ all the code words so you'll always be ready for snack time. 🥨
 
 *[In a more serious tone]* CracklePop is a program in the vein of
 [FizzBuzz](https://en.wikipedia.org/wiki/Fizz_buzz). It aims to be the very best
-FizzBuzz it can possibly be, though, with features to return a single value or a
-table of values.
+FizzBuzz  with features to return a single value or a
+friendly table of values.
 
 To get a complete table of values you can call `cracklepop` with no arguments. If you'd
 like just one value you pass a number of the program `cracklepop 109`. There are flags
@@ -38,7 +40,7 @@ import (
 /*:
 ## Core Algorithm
 
-This is that we're here for ✨ (it's the code you asked for).
+This is that we're here for ✨ (more specifically, *it's the code you asked for*).
 
 The core algorithm checks divisibility by using the modulo operator
 and returns a response. This is a pretty standard implementation. The only
@@ -220,7 +222,7 @@ func terminalColumns() int {
 }
 
 /*:
-# Utility Functions
+## Utility Functions
 :*/
 // %-*s pads a string to a length with the padding at the end
 func rpad(s string, length int) string {
