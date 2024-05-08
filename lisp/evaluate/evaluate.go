@@ -1,11 +1,15 @@
 package lisp
 
+import (
+	parser "lisp/parse"
+)
+
 type (
 	Environment struct{}
 	Result      struct{}
 )
 
-func evaluate(exp Expression, env Environment) (error, Result, Environment) {
+func evaluate(exp parser.Expression, env Environment) (error, Result, Environment) {
 	return nil, Result{}, Environment{}
 }
 

@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	"lisp/lisp"
+	parser "lisp/parse"
 )
 
 func welcomeMsg() string {
@@ -18,7 +18,7 @@ func prompt() string {
 }
 
 func evaluateStr(str string) {
-	err, parsed := lisp.Parse(str)
+	err, parsed := parser.Parse(str)
 	if err != nil {
 		fmt.Fprintf(os.Stdout, "\033[0;31m %s\033[0m", err)
 	}
@@ -37,7 +37,7 @@ func main() {
 			input := strings.TrimPrefix(text, ".lex")
 			var results []string = []string{}
 
-			for _, t := range lisp.Lex(input) {
+			for _, t := range parser.Lex(input) {
 				token := fmt.Sprintf("<%s>", t)
 				results = append(results, token)
 			}
@@ -49,7 +49,7 @@ func main() {
 			input := strings.TrimPrefix(text, ".tokenize")
 			var results []string = []string{}
 
-			for _, token := range lisp.Tokenize(lisp.Lex(input)) {
+			for _, token := range parser.Tokenize(parser.Lex(input)) {
 				results = append(results, token.String())
 			}
 
