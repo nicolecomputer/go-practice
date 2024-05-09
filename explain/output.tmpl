@@ -24,7 +24,6 @@
                 flex-direction: column;
                 background-color: #FFF9FB;
                 align-items: center;
-                padding: 0;
                 margin: 0;
             }
 
@@ -47,7 +46,6 @@
             b,
             strong {
                 font-weight: 700;
-
             }
 
             h1,
@@ -93,9 +91,16 @@
                 font-family: "Inconsolata", monospace;
             }
 
+            img {
+                width: 100%;
+            }
+
             /* WORDS Section */
             .words {
-                width: 800px;
+                width: 100%;
+                max-width: 800px;
+                padding: 0 8px;
+                box-sizing: border-box;
                 color: #73657B;
             }
             .words p {
@@ -114,9 +119,10 @@
 
             /* CODE Section */
             .code {
+                width: 100%;
+                max-width: 800px;
                 margin: 10px 0;
                 overflow: hidden;
-                width: 800px;
                 border-radius: 8px;
                 border: 1px solid #D1D7DD;
                 background-color: #FDFAF5;
@@ -182,7 +188,10 @@
             }
 
             .interrupt .content {
-                width: 800px;
+                width: 100%;
+                max-width: 800px;
+                padding: 0 8px;
+                box-sizing: border-box;
             }
         </style>
 
@@ -320,7 +329,7 @@
         <section class="interrupt">
             <div class="content">
                 <h2>Oh, hi ❤</h2>
-                <p>This page was generated using <a href="#">explain</a>
+                <p>This page was generated using <a href="https://github.com/nicolecomputer/go-practice/tree/main/explain">explain</a>
                 </p>
             </div>
         </section>
