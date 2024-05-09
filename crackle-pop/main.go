@@ -1,6 +1,7 @@
 /*:
 # CracklePop!
 
+
 The latest version of this code can be found on [Github](https://github.com/nicolecomputer/go-practice/blob/main/crackle-pop/main.go)
 
 Hello, Adventurer! 💖
@@ -11,7 +12,7 @@ to you and say "3" and you'll have to tell them back "Crackle" then they **might
 algorithm. But don't worry, you can use this handy program to generate a table of
 all the code words so you'll always be ready for snack time. 🥨
 
-[Video Demo]
+![Demo of Cracklepop and its features](https://vhs.charm.sh/vhs-aCzX32NfkDY1at1E0l9bJ.gif)
 
 *[In a more serious tone]* CracklePop is a program in the vein of
 [FizzBuzz](https://en.wikipedia.org/wiki/Fizz_buzz). It aims to be the very best
